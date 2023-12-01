@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Box } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Layout() {
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(true);
@@ -13,6 +13,7 @@ export default function Layout() {
     const handleToggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
     };
+    
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -22,7 +23,7 @@ export default function Layout() {
 
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <Toolbar />
-                <main style={{ width: '1200px', overflowX:'auto' }}>
+                <main style={{ width: '1200px', overflowX: 'auto' }}>
                     <Outlet />
                 </main>
             </Box>

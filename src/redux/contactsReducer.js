@@ -2,8 +2,15 @@ const initialState = {
     contacts: [
         { name: 'John Doe', email: 'john@example.com', phoneNumber: '1234567890' },
         { name: 'Jane Smith', email: 'jane@example.com', phoneNumber: '9876543210' },
-        // Add more contacts as needed
-    ],
+        { name: 'Adam Johnson', email: 'adam@example.com', phoneNumber: '4567891230' },
+        { name: 'Sarah Williams', email: 'sarah@example.com', phoneNumber: '9081726354' },
+        { name: 'Michael Brown', email: 'michael@example.com', phoneNumber: '2468135790' },
+        { name: 'Emily Davis', email: 'emily@example.com', phoneNumber: '1357924680' },
+        { name: 'Christopher Wilson', email: 'christopher@example.com', phoneNumber: '3698521470' },
+        { name: 'Jessica Taylor', email: 'jessica@example.com', phoneNumber: '7852143690' },
+        { name: 'Matthew Anderson', email: 'matthew@example.com', phoneNumber: '1592634870' },
+        { name: 'Olivia Jackson', email: 'olivia@example.com', phoneNumber: '9876541230' }
+      ],
 };
 
 // Action types

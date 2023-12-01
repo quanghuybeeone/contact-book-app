@@ -12,6 +12,15 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import TextField from '@mui/material/TextField';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
         padding: theme.spacing(2),
@@ -66,7 +75,7 @@ const List = () => {
             <div className='title-page'>
                 <h1>List Contact</h1>
                 <div>
-                    <Button variant="outlined" onClick={handleClickOpen}>
+                    <Button variant="contained" onClick={handleClickOpen}>
                         Add New Contact
                     </Button>
                     <BootstrapDialog
@@ -124,36 +133,41 @@ const List = () => {
                     </BootstrapDialog>
                 </div>
             </div>
-
-            <table className="contacts-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredContacts.length === 0 ? (
-                        <tr>
-                            <td colSpan="4" style={{ textAlign: 'center' }}>Contact is Not Found <b>"{searchQuery}"</b></td>
-                        </tr>
-                    ) : (
-                        filteredContacts.map((contact, index) => (
-                            <tr key={index}>
-                                <td>{contact.name}</td>
-                                <td>{contact.email}</td>
-                                <td>{contact.phoneNumber}</td>
-                                <td>
-                                    <button className="delete-button" onClick={() => handleDelete(index)}>Delete</button>
-                                    <Link to={'/edit/' + index}><button className="edit-button">Edit</button></Link>
-                                </td>
-                            </tr>
-                        ))
-                    )}
-                </tbody>
-            </table>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Phone</TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filteredContacts.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={4} align="center" >Contact is Not Found <b>"{searchQuery}"</b></TableCell>
+                            </TableRow>
+                        ) : (
+                            filteredContacts.map((row, index) => (
+                                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell component="th" scope="row">
+                                        {row.name}
+                                    </TableCell>
+                                    <TableCell>{row.email}</TableCell>
+                                    <TableCell>{row.phoneNumber}</TableCell>
+                                    <TableCell>
+                                        <Stack spacing={2} direction="row">
+                                            <Button variant="contained" className="delete-button" onClick={() => handleDelete(index)}>Delete</Button>
+                                            <Link to={'/edit/' + index}><Button variant='outlined' className="edit-button">Edit</Button></Link>
+                                        </Stack>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </>
 
     )

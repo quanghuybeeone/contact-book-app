@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { editContact } from '../redux/contactsReducer';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
 import './Edit.css'
 const Edit = () => {
   const { index } = useParams();
@@ -60,15 +63,18 @@ const Edit = () => {
           />
         </label>
         <br />
-        <Link to={'/'}>
-          <button type="button" className="form-button cancel">
-            Cancel
-          </button>
-        </Link>
+        <Stack spacing={2} direction="row">
+          <Link to={'/'}>
+            <Button type="button" className="form-button cancel">
+              Cancel
+            </Button>
+          </Link>
 
-        <button type="button" onClick={handleSave} className="form-button">
-          Save
-        </button>
+          <Button variant='contained' type="button" onClick={handleSave} className="form-button">
+            Save
+          </Button>
+        </Stack>
+
       </form>
     </div>
   );
