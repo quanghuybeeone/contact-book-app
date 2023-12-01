@@ -15,6 +15,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Avatar } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchQuery } from '../redux/searchReducer';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -159,6 +161,14 @@ export default function Header({ onToggleDrawer }) {
         </Menu>
     );
 
+    const dispatch = useDispatch();
+    const searchQuery = useSelector((state) => state.search.searchQuery);
+    const handleSearchInputChange = (event) => {
+        const query = event.target.value;
+        dispatch(setSearchQuery(query));
+    };
+
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -188,6 +198,8 @@ export default function Header({ onToggleDrawer }) {
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            defaultValue={searchQuery} 
+                            onChange={handleSearchInputChange}
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
